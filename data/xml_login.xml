@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding = "utf-8">
+<info>
+<title>图书馆系统登录</explain>
+<success username="123456" password="123456">登录成功</success>
+
+</info>
