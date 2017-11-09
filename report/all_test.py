@@ -4,15 +4,16 @@ import smtplib
 import unittest
 import HTMLTestRunner #引入HTMLTestRunner包
 import time,os
-from email.mine.text import MIMEText
+from email.mime.text import MIMEText
 
 
 #======================定义发送邮件================================
 def send_mail(file_new):
 	#发送邮箱
-	mail_from = '2409852189@qq.com'
+	mail_from = 'elan_queen@163.com'
 	#收信箱
 	mail_to = 'jieliuau@isoftstone.com'
+	#'jieliuau@isoftstone.com'
 	#定义正文
 	f = open(file_new,'rb')
 	mail_body = f.read()
@@ -24,9 +25,9 @@ def send_mail(file_new):
 	msg['date']=time.strftime('%a,%d %b %Y %H:%M:%S %z')
 	smtp=smtplib.SMTP()
 	#连接SMTP服务器
-	smtp.connect('smtp.qq.com')
+	smtp.connect('smtp.163.com')
 	#用户名密码
-	smtp.login('2409852189@qq.com','spicy000S')
+	smtp.login('elan_queen@163.com','spicy000S')
 	smtp.sendmail(mail_from,mail_to,msg.as_string())
 	smtp.quit()
 	print ('email has sent out')
@@ -44,34 +45,27 @@ def send_report(testreport):
 	send_mail(file_new)
 
 #======================将用例添加到测试套件========================
-'''
-def creatsuite():
-    
-    testunit = unittest.TestSuite()
-    #定义测试文件查找目录
-    test_dir = '.\\testcase'
-    discover = unittest.defaultTestLoader.discover(test_dir,pattern = 'test_*.py',top_level_dir = None)
-    #discover方法筛选出用例，添加到测试套件中
-    for test_suite in discover:
-        for test_case in test_suite:
-            testunite.addTests(test_case)
-	    print(testunit)
-    return testunit
-'''
 
 def creatsuite():
-	testunit=unittest.TestCase()
-	testunit.addTest(testSearchText('test_search_onlytext'))
+	testunit=unittest.TestSuite()
+	test_dir = 'D:\\Python\\Workspace\\SDLabTest\\testcase'
+	discover = unittest.defaultTestLoader.discover(test_dir,pattern='test_search_text.py',top_level_dir=None)
+	for test_case in discover:
+		print(test_case)
+		testunit.addTests(test_case)
 	return testunit
-
+'''
+	testunit.addTests(testSearchText('test_search_onlytext'))
+	return testunit
+'''
    
 if __name__ == '__main__':
 	 #获取当前时间
-	now = time.strftime('%Y-%m-%d %H:%M:%S')
+	now = time.strftime('%Y-%m-%d %H_%M_%S')
 	#定义测试报告存放路径
-	testreport = 'D:\\Python\\Workspace\\SDLabTest\\log'
+	testreport = 'D:\\Python\\Workspace\\SDLabTest\\log\\'
 	log_dir = testreport+now+'result.html'
-	log_fp = file(log_dir,'wb')
+	log_fp = open(log_dir,'wb')
 	#定义测试报告
 	runner = HTMLTestRunner.HTMLTestRunner(stream=log_fp,title='搜索测试报告',description='用例执行情况')
 	alltestnames=creatsuite()
