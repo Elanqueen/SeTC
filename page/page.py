@@ -18,4 +18,5 @@ class pageSearch:
     value_creator=[By.ID,'scope_creator1']
     txt=[By.NAME,'vl(freeText0)']
     button=[By.LINK_TEXT,'高级检索']
+    ggjs=[By.XPATH,'html/body/div[2]/div/div[1]/div[2]/form/div[1]/div[1]/div[2]/div/div/button']
    # content_catogery=[]
