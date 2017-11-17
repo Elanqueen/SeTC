@@ -1,8 +1,14 @@
 #coding = utf-8
-from page.page import pageLoginimport 
+
+import os,sys
+root_path = os.path.abspath(os.path.dirname(os.path.dirname(os.getcwd())))
+print(root_path)
+sys.path.append(os.path.abspath(os.path.join(root_path,'page')))
+
+from page import pageLogin
 
 def login(self,username,password):
-    driver = self.driver
+    driver = self
     element=driver.find_element(pageLogin.cardid[0],pageLogin.cardid[1])
     element.clear()
     element.send_keys(username)

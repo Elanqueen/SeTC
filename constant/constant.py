@@ -6,5 +6,5 @@
 LOGIN_URL = 'http://www.bplisn.net.cn/'
 
 #登录信息地址
-XML_LOGIN = 'D:\Python\Workspace\SDLabTest\data\xml_login.txt'
-XML_SEARCH = 'D:\Python\Workspace\SDLabTest\data\xml_search.xml'
+XML_LOGIN = 'D:\\Python\\Workspace\\SDLabTest\\data\\xml_login.xml'
+XML_SEARCH = r'D:\Python\Workspace\SDLabTest\data\xml_search.xml'

@@ -1,11 +1,16 @@
+#! /usr/bin/env python
+#coding=utf-8
+
+from selenium.webdriver.common.by import By
+
 class pageLogin:
     cardid=[By.ID,'loginform-username']
     password=[By.ID,'loginform-password']
     remember_me=[By.ID,'loginform-rememberme']
     submit=[By.NAME,'login-button']
 
-class pageLostPassword:
-    lost_pw=[By.Id,'']
+#class pageLostPassword:
+ #   lost_pw=[By.ID,'']
     
 class pageSearch:
     select_catogery=[By.TAG_NAME,'select']
