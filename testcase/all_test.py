@@ -13,7 +13,6 @@ def send_mail(file_new):
 	mail_from = '发送邮箱'
 	#收信箱
 	mail_to = '接收邮箱'
-	#'jieliuau@isoftstone.com'
 	#定义正文
 	f = open(file_new,'rb')
 	mail_body = f.read()
