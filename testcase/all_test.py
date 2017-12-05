@@ -10,9 +10,9 @@ from email.mime.text import MIMEText
 #======================定义发送邮件================================
 def send_mail(file_new):
 	#发送邮箱
-	mail_from = 'elan_queen@163.com'
+	mail_from = '发送邮箱'
 	#收信箱
-	mail_to = 'jieliuau@isoftstone.com'
+	mail_to = '接收邮箱'
 	#'jieliuau@isoftstone.com'
 	#定义正文
 	f = open(file_new,'rb')
@@ -27,7 +27,7 @@ def send_mail(file_new):
 	#连接SMTP服务器
 	smtp.connect('smtp.163.com')
 	#用户名密码
-	smtp.login('elan_queen@163.com','spicy000S')
+	smtp.login('邮箱','密码') #请填写发送用的邮箱和密码（注：提前开通邮箱的SMTP服务）
 	smtp.sendmail(mail_from,mail_to,msg.as_string())
 	smtp.quit()
 	print ('email has sent out')
@@ -48,22 +48,18 @@ def send_report(testreport):
 
 def creatsuite():
 	testunit=unittest.TestSuite()
-	test_dir = 'D:\\Python\\Workspace\\SDLabTest\\testcase'
-	discover = unittest.defaultTestLoader.discover(test_dir,pattern='test_search_text.py',top_level_dir=None)
+	test_dir = 'D:\Repositories\SeTC\\testcase'
+	discover = unittest.defaultTestLoader.discover(test_dir,pattern='test_*.py',top_level_dir=None)
 	for test_case in discover:
 		print(test_case)
 		testunit.addTests(test_case)
 	return testunit
-'''
-	testunit.addTests(testSearchText('test_search_onlytext'))
-	return testunit
-'''
    
 if __name__ == '__main__':
 	 #获取当前时间
 	now = time.strftime('%Y-%m-%d %H_%M_%S')
 	#定义测试报告存放路径
-	testreport = 'D:\\Python\\Workspace\\SDLabTest\\log\\'
+	testreport = 'D:\Repositories\SeTC\\log\\'
 	log_dir = testreport+now+'result.html'
 	log_fp = open(log_dir,'wb')
 	#定义测试报告

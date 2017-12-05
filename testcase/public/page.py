@@ -1,6 +1,5 @@
-#! /usr/bin/env python
 #coding=utf-8
-
+'''页面定位信息维护'''
 from selenium.webdriver.common.by import By
 
 class pageLogin:
@@ -9,9 +8,6 @@ class pageLogin:
     remember_me=[By.ID,'loginform-rememberme']
     submit=[By.NAME,'login-button']
 
-#class pageLostPassword:
- #   lost_pw=[By.ID,'']
-    
 class pageSearch:
     select_catogery=[By.TAG_NAME,'select']
     value_title=[By.ID,'scope_title1']
