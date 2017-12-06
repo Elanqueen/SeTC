@@ -14,5 +14,5 @@ mail_link_method = 'smtp.163.com'
 LOGIN_URL = 'http://www.bplisn.net.cn/'
 
 #登录信息地址
-XML_LOGIN = 'D:\Repositories\SeTC\\data\\xml_login.xml'
-XML_SEARCH = r'D:\Repositories\SeTC\data\xml_search.xml'
+XML_LOGIN = 'D:\\Repositories\\SeTC\\data\\xml_login.xml'
+XML_SEARCH = 'D:\\Repositories\\SeTC\\data\\xml_search.xml'
