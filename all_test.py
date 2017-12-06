@@ -5,14 +5,12 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(),"public")))
 import constant
 import smtplib
 import unittest
-import HTMLTestRunner #引入HTMLTestRunner包，自行百度下载适合selenium3.x版本的
+import HTMLTestRunner #引入HTMLTestRunner包
 import time,os
 from email.mime.text import MIMEText
 
-
 #======================定义发送邮件================================
 def send_mail(file_new):
-	#定义正文
 	f = open(file_new,'rb')
 	mail_body = f.read()
 	f.close()
@@ -65,7 +63,3 @@ if __name__ == '__main__':
 	runner.run(alltestnames)
 	log_fp.close()
 	send_report(testreport)  #发送报告
-
-
-
-    
