@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import Select
 
 class SeEncap(object):
     ''' 封装了selenium2的部分方法'''
@@ -89,6 +90,7 @@ class SeEncap(object):
         el.click()
 
     def click(self,cls):
+        self.element_wait(cls)
         el=self.get_element(cls)
         el.click()
 
@@ -163,6 +165,32 @@ class SeEncap(object):
         el = self.get_element(css)
         el.submit()
 
+#============================下拉框选择=================================
+    def element_select(self,cls,type,value=2):
+        '''勾选下拉框内容
+        根据三种方式选择：index-----依据数字，例：1,2,3
+                         visible_text-----依据显示的文字，例：“text”
+                         value------依据value属性
+        '''
+        select=Select(self.get_element(cls))
+        if (type=="index"):
+            select.select_by_index(value)
+        elif (type=="visible_text"):
+            select.select_by_visible_text(value)
+        elif (type=="value"):
+            select.select_by_value(value)
+
+    def element_deselect(self,cls,type,value):
+        '''取消下拉框勾选操作'''
+        select = Select(self.get_element(cls))
+        if (type == 'index'):
+            select.deselect_by_index(value)
+        elif (type == 'visible_text'):
+            select.deselect_by_visible_text(value)
+        elif (type == 'value'):
+            select.dedeselect_by_value(value)
+
+
 
 #===========================获取页面元素================================
 
@@ -231,10 +259,25 @@ class SeEncap(object):
 
 #==========================切换到iframe=========================
     def switch_to_frame(self,cls):
-        '''切换到iframe'''
-        self.element_wait(cls)
-        iframe_el=self.get_element(cls)
-        self.driver.switch_to.frame(iframe_el)
+        '''切换到iframe
+        定位元素可以是：id,name,tag_name,
+                      例： driver.switch_to.frame("frame1")  # 2.用id来定位
+                           driver.switch_to.frame("myframe")  # 3.用name来定位
+                           driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
+        也可以通过index和WebElement来定位，
+                      例：
+                          index从0开始，传入整型参数即判定为用index定位，传入str参数则判定为用id/name定位
+                          WebElement对象，即用find_element系列方法所取得的对象，我们可以用tag_name、xpath等来定位frame对象
+                      <iframe src="myframetest.html" />
+                       则，
+                      driver.switch_to.frame(driver.find_element_by_xpath("//iframe[contains(@src,'myframe')]"))
+
+        '''
+        self.driver.switch_to.frame(cls)  #仅用于第一种定位方式
+
+    def switch_to_parent_frame(self):
+        '''从frame2切回frame1'''
+        self.driver.switch_to.parent_frame()
 
     def switch_to_frame_out(self):
         '''从frame切换回主页面'''
